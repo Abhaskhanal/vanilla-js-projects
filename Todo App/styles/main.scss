@@ -1,0 +1,288 @@
+/* Utils */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+@mixin flex {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin flexRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+$btn-blue: #1976d2;
+$bg-yellow: #ff9800;
+$red-alert: #d32f2f;
+$green-alert: #4caf50;
+$main-white: #f7f7f7;
+$red-text: #ba1200;
+$border: 1px solid #333;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    background-color: $bg-yellow;
+}
+
+.popup-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 152, 0, 0.8);
+    display: none;
+
+    .pop-up {
+        width: 350px;
+        height: auto;
+        background-color: $main-white;
+        color: black;
+        padding: 0.6rem;
+        border-radius: 0.5rem;
+        left: 50%;
+        top: 20%;
+        transform: translateX(-50%);
+        position: absolute;
+
+        p {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .btn-container {
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            .btn {
+                color: white;
+                background-color: $btn-blue;
+                border: none;
+                border-radius: 0.5rem;
+                font-size: 1.2rem;
+                padding: 0.2rem;
+                width: 50px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.main-container {
+    background-color: $main-white;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 1.5rem;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 7px;
+
+    .todo-form {
+        @include flexColumn();
+
+        h1,
+        p,
+        div {
+            margin: 0.4rem;
+        }
+
+        .alert {
+            width: 95%;
+            text-align: center;
+            border-radius: 0.5rem;
+            color: white;
+            padding: 0.2rem;
+        }
+
+        .form-control {
+            padding: 0.5rem;
+            @include flex();
+
+            #todo,
+            .submit-btn {
+                border-radius: 0;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: $border;
+            }
+
+            #todo {
+                border-radius: 0.5rem 0 0 0.5rem;
+                outline: none;
+                width: 400px;
+            }
+
+            .submit-btn {
+                border-radius: 0 0.5rem 0.5rem 0;
+                border-left: none;
+                cursor: pointer;
+                background-color: $btn-blue;
+                color: white;
+
+                &:hover {
+                    background-color: #03a9f4;
+                    transition: background-color 0.3s ease-in-out;
+                    color: whitesmoke;
+                }
+            }
+        }
+    }
+
+    .todo-container {
+        padding: 0.5rem;
+        @include flexColumn();
+        visibility: hidden;
+
+        .todo-list {
+            width: 100%;
+            padding: 0.5rem;
+
+            .todo-item {
+                @include flexRow();
+                background-color: #f5f5f5;
+                padding: 0.2rem;
+                margin: 0.4rem;
+                border-radius: 0.3rem;
+                font-size: 1.1rem;
+                width: 100%;
+
+                .title {
+                    width: 80%;
+                    overflow: hidden;
+                }
+
+                .delete-btn {
+                    font-size: 1.1rem;
+                    background-color: inherit;
+                    cursor: pointer;
+                    color: $red-text;
+                    border: none;
+
+                    &:hover {
+                        color: $red-alert;
+                        transition: color 0.2s ease-in-out;
+                    }
+                }
+            }
+        }
+
+        .clear-btn {
+            padding: 0.2rem;
+            background-color: inherit;
+            border: none;
+            font-size: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 0.3rem;
+            color: $red-text;
+            cursor: pointer;
+
+            &:hover {
+                color: $red-alert;
+                transition: color 0.2s ease-in-out;
+            }
+        }
+    }
+
+    // alert
+    .alert-red {
+        background-color: $red-alert;
+    }
+
+    .alert-green {
+        background-color: $green-alert;
+    }
+
+    //show-hide
+    .show-container {
+        visibility: visible;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-container {
+        width: 460px;
+    }
+}
+
+@media (max-width: 468px) {
+    .main-container {
+        width: 430px;
+
+        .todo-form {
+            .form-control {
+                #todo {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 468px) {
+    .main-container {
+        width: 400px;
+
+        .todo-form {
+            .form-control {
+                #todo {
+                    width: 270px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 468px) {
+    .main-container {
+        width: 350px;
+
+        .todo-form {
+            .form-control {
+                #todo {
+                    width: 250px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 352px) {
+    .main-container {
+        width: 320px;
+
+        .todo-form {
+            .form-control {
+                #todo {
+                    width: 230px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 326px) {
+    .main-container {
+        width: 300px;
+
+        .todo-form {
+            .form-control {
+                #todo {
+                    width: 210px;
+                }
+            }
+        }
+    }
+}
